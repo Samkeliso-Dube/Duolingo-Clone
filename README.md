@@ -1,62 +1,120 @@
-# Duolingo Clone
+# 🦉 Duolingo Clone – Scalable Web App on AWS Elastic Beanstalk
 
-This project is a clone of Duolingo, built using modern web technologies. It features a comprehensive set of functionalities including an admin dashboard, Stripe integration for premium features, and SSO authentication with Google.
+A fully functional Duolingo-style language learning app built with **Next.js**, **Drizzle ORM**, and **Neon**,  and **AWS Elastic Beanstalk** deployment with auto-scaling and monitoring.
 
-## Features
+---
 
-- **Frontend**: Next.js, TypeScript, TailwindCSS, ShadCN UI
-- **Backend**: Drizzle, Neon (PostgreSQL)
-- **State Management**: Zustand
-- **HTTP Requests**: Axios
-- **Admin Dashboard**: `react-admin`
-- **Payments**: Stripe integration
-- **Authentication**: Google SSO
+## 🚀 Features
 
-## Installation
+- 🔤 Interactive language learning UI inspired by Duolingo
+- 📊 Admin dashboard for content and user management
+- 🌩️ Deployed on AWS Elastic Beanstalk with load balancing & auto-scaling
+- 📈 Real-time monitoring using CloudWatch
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/RikhiSingh/Duolingo-Clone.git
-   cd Duolingo-Clone
-   
-2. **Install Dependencies**
-   ```bash
-   npm install
-   
-3. **Set up environment variables** <br/>
-   Create a .env file in the root directory and add the necessary environment variables.
-   *Namely*
-   ```bash
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY 
-   CLERK_SECRET_KEY 
-   DATABASE_URL
-   STRIPE_API_KEY
-   NEXT_PUBLIC_APP_URL
-   STRIPE_WEBHOOK_SECRET
+---
 
-4. **Run the development server**
-   ```bash
-   npm run dev
+## 🛠️ Tech Stack
 
-5. **Access the Application** <br />
-   Open http://localhost:3000 in your browser.
+| Layer              | Tech/Service                |
+|--------------------|----------------------------|
+| Frontend           | Next.js (App Router)       |
+| Backend/API        | Node.js (via Next.js)      |
+| ORM / DB Access    | Drizzle ORM                |
+| Database           | Neon (Serverless PostgreSQL)|
 
-## License
-This project is licensed under the MIT License.
 
-```Note: I chose the MIT License because it is a permissive open source license that allows others to freely use, modify, and distribute the code with minimal restrictions.```
 
-## Usage
-- Register or log in using Google SSO.
-- Explore language courses and track your progress.
-- Admins can manage content through the admin dashboard.
-- Upgrade to premium for additional features using Stripe.
-  
-## Contributing <br />
-Contributions are welcome! Please follow these steps: <br />
+| Deployment         | AWS Elastic Beanstalk      |
+| Monitoring         | AWS CloudWatch             |
 
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes and commit them.
-4. Push to your branch.
-5. Open a pull request.
+---
+
+## 📦 Setup Instructions
+
+### 1. Clone the Repository
+
+```
+git clone https://github.com/your-username/duolingo-clone.git
+cd duolingo-clone
+```
+### 2. Install Dependencies
+```
+npm install
+```
+### 3. Setup Environment Variables
+Create a **.env** file in the root directory with all necessary secrets
+```
+DATABASE_URL=postgresql://user:password@host/db
+CLERK_SECRET_KEY=your_clerk_backend_api_key
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_frontend_api_key
+``` 
+### 4. Apply Schema and seed data with Drizzle
+```
+npx drizzle-kit push
+npx tsx scripts/seed.ts
+```
+
+### 5. Run the development server
+- Start the Next.js dev server locally:
+```
+npm run dev
+```
+- Open http://localhost:3000 in your browser
+
+![App Preview](./images/Screenshot%20from%202025-05-30%2018-59-29.png)
+
+
+### 6. Prepare for deployment
+- Build the production version:
+```
+npm run build
+```
+- Start the production server locally to confirm:
+```
+npm run start
+```
+### 7. Zip the build file for deployment
+```
+zip -r deploy.zip . -x "node_modules/*" ".git/*" 
+```
+
+## Duolingo Clone Deployment to Elastic Beanstalk
+
+## Prerequisites
+- AWS account
+
+- AWS Elastic Beanstalk service enabled
+
+- Your app built locally (npm run build)
+
+- AWS IAM user with permissions to create and manage Elastic Beanstalk applications
+
+### Step 1: Create an Elastic Beanstalk Application
+
+**1.** Log in to the AWS Management Console.
+
+**2.** Navigate to ***Elastic Beanstalk*** service.
+
+**3. Click Create** Application.
+
+**4.** Enter the application name (e.g., duolingo-clone).
+
+**5.** Choose Platform:
+
+- Select **Node.js** (choose the latest supported version).
+
+**6.** Under **Application code**, select **Upload your code** and upload the ***.zip*** file you created.
+
+***Click Create application.***
+
+### Step 2 Access Your Deployed App
+
+- Once the environment health is **green** and status is **Ready**, your app is live.
+
+**Use the provided ***URL*** in the Elastic Beanstalk dashboard to visit your Duolingo Clone app.**
+
+
+
+
+
+

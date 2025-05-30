@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'; // Add this to the top of your file
+
 import { isAdmin } from "@/lib/admin";
 
 import dynamic from "next/dynamic";
